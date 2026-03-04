@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, type ReactNode } from 'react'
 
 interface Transaction {
     id: number
@@ -15,7 +15,7 @@ interface TransactionContextType {
     deleteTransaction: (id: number) => void
 }
 
-const TransactionContext = createContext<TransactionContextType | undefined>(undefined)
+export const TransactionContext = createContext<TransactionContextType | undefined>(undefined)
 
 export function TransactionProvider({ children }: { children: ReactNode }) {
     const [transactions, setTransactions] = useState<Transaction[]>(() => [
@@ -43,10 +43,4 @@ export function TransactionProvider({ children }: { children: ReactNode }) {
     )
 }
 
-export function useTransactions() {
-    const context = useContext(TransactionContext)
-    if (context === undefined) {
-        throw new Error('useTransactions must be used within a TransactionProvider')
-    }
-    return context
-}
+// Hook is exported from hooks/useTransactions.ts
