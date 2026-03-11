@@ -1,13 +1,25 @@
-import { useTransactions } from '../hooks/useTransactions'
 import TransactionItem from './TransactionItem'
 import './TransactionList.css'
 
-interface TransactionListProps {
-    filter: 'all' | 'income' | 'expense'
+interface Transaction {
+    id: number
+    title: string
+    amount: number
+    type: 'income' | 'expense'
+    date: string
 }
 
-export default function TransactionList({ filter }: TransactionListProps) {
-    const { transactions } = useTransactions()
+interface TransactionListProps {
+    filter: 'all' | 'income' | 'expense'
+    transactions: Transaction[]
+    deleteTransaction: (id: number) => void
+}
+
+export default function TransactionList({
+    filter,
+    transactions,
+    deleteTransaction
+}: TransactionListProps) {
     const filteredTransactions = transactions.filter((transaction) => {
         if (filter === 'all') {
             return true
@@ -34,6 +46,7 @@ export default function TransactionList({ filter }: TransactionListProps) {
                             amount={transaction.amount}
                             type={transaction.type}
                             date={transaction.date}
+                            deleteTransaction={deleteTransaction}
                         />
                     ))}
                 </div>
