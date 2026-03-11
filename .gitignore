@@ -40,9 +40,6 @@ coverage
 # Local config
 *.local
 
-# JSON files
-*.json
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
