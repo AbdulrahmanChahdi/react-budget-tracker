@@ -1,0 +1,67 @@
+.transaction-list-container {
+  margin: 0;
+  width: 100%;
+  animation: fadeIn 0.3s ease 0.1s both;
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.transaction-list-container h2 {
+  color: var(--primary-soft);
+  margin: 0 0 0.8rem 0.1rem;
+  padding: 0;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  opacity: 0.9;
+}
+
+.transactions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2.4rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-state p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+@media (max-width: 480px) {
+  .transaction-list-container h2 {
+    margin-left: 0.1rem;
+  }
+
+  .empty-state {
+    padding: 2rem 1rem;
+    border-radius: 14px;
+  }
+
+  .empty-state p {
+    font-size: 0.85rem;
+  }
+}
+

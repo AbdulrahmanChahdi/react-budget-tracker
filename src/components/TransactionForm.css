@@ -1,0 +1,117 @@
+.transaction-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin: 0;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  animation: slideUp 0.25s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.transaction-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.transaction-form label {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.transaction-form input,
+.transaction-form select {
+  width: 100%;
+  height: 44px;
+  padding: 0 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.94rem;
+  color: var(--text);
+  background: var(--surface-muted);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.transaction-form input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.transaction-form input:focus,
+.transaction-form select:focus {
+  outline: none;
+  border-color: #94a3b8;
+  box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.2);
+  background: var(--surface);
+}
+
+.transaction-form button {
+  width: 100%;
+  height: 46px;
+  margin-top: 0.35rem;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.15px;
+}
+
+.transaction-form button:hover {
+  background: var(--primary-soft);
+  border-color: var(--primary-soft);
+}
+
+.transaction-form button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 768px) {
+  .transaction-form {
+    padding: 0.9rem;
+    border-radius: 14px;
+  }
+
+  .transaction-form input,
+  .transaction-form select {
+    height: 42px;
+  }
+
+  .transaction-form button {
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .transaction-form {
+    padding: 0.85rem;
+  }
+
+  .transaction-form label {
+    font-size: 0.7rem;
+  }
+}
