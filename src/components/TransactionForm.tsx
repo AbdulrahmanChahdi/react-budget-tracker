@@ -1,9 +1,19 @@
 import { useState, type FormEvent } from 'react'
-import { useTransactions } from '../hooks/useTransactions'
 import './TransactionForm.css'
 
-export default function TransactionForm() {
-    const { addTransaction } = useTransactions()
+interface Transaction {
+    id: number
+    title: string
+    amount: number
+    type: 'income' | 'expense'
+    date: string
+}
+
+interface TransactionFormProps {
+    addTransaction: (transaction: Transaction) => void
+}
+
+export default function TransactionForm({ addTransaction }: TransactionFormProps) {
 
     const [title, setTitle] = useState('')
     const [amount, setAmount] = useState('')
@@ -12,14 +22,14 @@ export default function TransactionForm() {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
+        const normalizedAmount = Math.abs(Number(amount.replace(',', '.')))
 
-        // Validation simple
         if (!title.trim()) {
             alert('Le titre est requis')
             return
         }
 
-        if (!amount || parseFloat(amount) <= 0) {
+        if (!Number.isFinite(normalizedAmount) || normalizedAmount <= 0) {
             alert('Le montant doit être supérieur à 0')
             return
         }
@@ -29,16 +39,14 @@ export default function TransactionForm() {
             return
         }
 
-        // Ajout au state global
         addTransaction({
             id: Date.now(),
             title: title.trim(),
-            amount: parseFloat(amount),
+            amount: normalizedAmount,
             type,
             date
         })
 
-        // Réinitialiser le formulaire
         setTitle('')
         setAmount('')
         setType('income')

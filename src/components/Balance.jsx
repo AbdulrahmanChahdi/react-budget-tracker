@@ -3,14 +3,16 @@ import './Balance.css'
 export default function Balance({ transactions = [] }) {
     const { totalIncome, totalExpense, balance } = transactions.reduce(
         (acc, transaction) => {
+            const normalizedAmount = Math.abs(Number(transaction.amount)) || 0
+
             if (transaction.type === 'income') {
-                acc.totalIncome += transaction.amount
-                acc.balance += transaction.amount
+                acc.totalIncome += normalizedAmount
+                acc.balance += normalizedAmount
             }
 
             if (transaction.type === 'expense') {
-                acc.totalExpense += transaction.amount
-                acc.balance -= transaction.amount
+                acc.totalExpense += normalizedAmount
+                acc.balance -= normalizedAmount
             }
 
             return acc

@@ -1,4 +1,3 @@
-import { useTransactions } from '../hooks/useTransactions'
 import './TransactionItem.css'
 
 interface TransactionItemProps {
@@ -7,6 +6,7 @@ interface TransactionItemProps {
     amount: number
     type: 'income' | 'expense'
     date: string
+    deleteTransaction: (id: number) => void
 }
 
 export default function TransactionItem({
@@ -14,9 +14,10 @@ export default function TransactionItem({
     title,
     amount,
     type,
-    date
+    date,
+    deleteTransaction
 }: TransactionItemProps) {
-    const { deleteTransaction } = useTransactions()
+    const normalizedAmount = Math.abs(Number(amount)) || 0
 
     const handleDelete = () => {
         if (confirm('Êtes-vous sûr de vouloir supprimer cette transaction ?')) {
@@ -37,7 +38,7 @@ export default function TransactionItem({
                 <div className="transaction-info-item">
                     <span className="transaction-info-label">Montant</span>
                     <span className={`transaction-amount ${type}`}>
-                        {type === 'income' ? '+' : '-'}${amount.toFixed(2)}
+                        {type === 'income' ? '+' : '-'}${normalizedAmount.toFixed(2)}
                     </span>
                 </div>
                 <div className="transaction-info-item">
